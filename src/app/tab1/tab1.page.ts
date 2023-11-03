@@ -99,7 +99,18 @@ export class Tab1Page {
   public openAddProductPage(){
     // Llama la pantalla de agregar producto
     this.router.navigate(['/add-product']);
-    
+  }
 
+  public openUpdateProductPage(){
+    this.router.navigate(['/update-product']);
+  }
+
+  public deleteProduct(i: number){
+    this.ProductService.removeProduct(i)
+    this.productsFounds = this.ProductService.getProducts();
+  }
+
+  public updateProduct(i: number,p: Product){
+    this.ProductService.updateProduct(i,p)
   }
 }

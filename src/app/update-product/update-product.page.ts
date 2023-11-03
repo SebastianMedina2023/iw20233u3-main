@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 import { ToastController } from '@ionic/angular';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.page.html',
-  styleUrls: ['./add-product.page.scss'],
+  selector: 'app-update-product',
+  templateUrl: './update-product.page.html',
+  styleUrls: ['./update-product.page.scss'],
 })
-export class AddProductPage {
+export class UpdateProductPage{
 
   public producForm: FormGroup
-  constructor(private fomBuilder: FormBuilder, private productService: ProductService,private toastController: ToastController, private router:Router) { 
+
+  constructor(private fomBuilder: FormBuilder, private productService: ProductService,private toastController: ToastController, private router:Router) {
     this.producForm = this.fomBuilder.group({
       name:['',Validators.required],
       price:[0,Validators.required],
@@ -20,9 +21,10 @@ export class AddProductPage {
       photo:['',Validators.required],
       type:['',Validators.required],
     });
-  }
 
-  public async addProduct(){
+   }
+
+   public async updateProduct(){
     const product = this.producForm.value;
     this.productService.addProducts(product);
 
@@ -36,4 +38,5 @@ export class AddProductPage {
     toast.present();
     this.router.navigate(['/tabs/tab1']);
   }
+
 }
